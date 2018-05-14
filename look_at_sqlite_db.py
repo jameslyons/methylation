@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 import numpy as np
 # Create your connection.
-cnx = sqlite3.connect('../forEl/python_data_processing/ES_meth_calls.sqlite')
+cnx = sqlite3.connect('ES_meth_calls.sqlite')
 new = pd.read_sql_query("SELECT * FROM ES_new_calls", cnx)
 old = pd.read_sql_query("SELECT * FROM ES_old_calls", cnx)
 cnx.close()
@@ -30,24 +30,42 @@ old2new = {new2old[i]:i for i in new2old.keys() if new2old[i] is not None}
 #same/diff = Homogeneous_or_Heterogeneous_or_Unclear?_(O/E/?)
 # gene = Gene_Name
 
-
 old['Gene_Name'] = [old2new[i] for i in old.gene]
 old.index = [a.Gene_Name+'_'+a._9 for a in old.itertuples()]
 new.index = [a.Gene_Name+'_'+a.ID_info for a in new.itertuples()]
 
 shared = old.join(new,lsuffix='_old',how='inner')
-shared.rename(columns = {'yes/no':'yesno','Methylated_(Y/N)':'Methylated_YN','same/diff':'samediff','Homogeneous_or_Heterogeneous_or_Unclear?_(O/E/?)':'homo_or_hetero'}, inplace = True)
+shared.rename(columns = {'yes/no':'yesno','Methylated_(Y/N)':'Methylated_YN','same/diff':'samediff','_Methylation_Homogeneous_or_Heterogeneous_or_Unclear?_(O/E/?)':'homo_or_hetero'}, inplace = True)
+
+################## get a list of samples where methylation agrees between old and new
+# convert any characters to uppercase, ignore errors due to None
+def toupper(x):
+    try: return x.upper()
+    except: return x
+
+shared['Methylated_YN'] = shared['Methylated_YN'].apply(toupper)
+shared['yesno'] = shared['yesno'].apply(toupper)
+
+methylated = shared[shared['yesno']==shared['Methylated_YN']]
+
+################## get a list of samples where homo/hetero agrees between old and new
+def convert_hh(x):
+    try:
+        if x.upper() == 'O' or x.upper() == 'S': return 'O'
+        elif x.upper() == 'E' or x.upper() == 'D': return 'E'
+    except: return x
+
+shared['homo_or_hetero'] = shared['homo_or_hetero'].apply(convert_hh)
+shared['samediff'] = shared['samediff'].apply(convert_hh)
+
+print(shared['samediff'])
+homohetero = shared[shared['homo_or_hetero']==shared['samediff']]
+print(homohetero['homo_or_hetero'])
+print(np.shape(homohetero))
 
 
-methylated = shared[shared['yes/no']==shared['Methylated_(Y/N)']]
 
-
-
-
-
-
-
-
+'''
 
 ##### convert all the calls to uppercase
 #print(shared['yes/no'])
@@ -67,3 +85,4 @@ shared['Methylated_(Y/N)'] = [str(i).upper() for i in shared['Methylated_(Y/N)']
 
 print(np.unique(shared['yes/no']))
 print(np.unique(shared['Methylated_(Y/N)']))
+'''
