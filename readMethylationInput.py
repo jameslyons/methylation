@@ -49,6 +49,8 @@ if __name__=="__main__":inputListFileName = './inputlist.txt'
 
 
 with open(inputListFileName) as fp:
+
+
     fileList = fp.readlines()
         
     fileList = [f.strip() for f in fileList]
