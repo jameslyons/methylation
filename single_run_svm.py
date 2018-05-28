@@ -81,8 +81,9 @@ for REXName in listREXNames:
     gridC = []
     gridEPSILON = []
 
-    listC = list(np.linspace(0.1, 15, 20))
-    listEPSILON = list(np.linspace(0, 15,20))
+    #listC = list(np.linspace(0.001, 50, 50))
+    listC = list(np.logspace(-3, 5))
+    listEPSILON = list(np.linspace(0, 15, 50))
 
     for C in listC:
         for EPSILON in listEPSILON:
@@ -130,6 +131,6 @@ for REXName in listREXNames:
     strTemp = "\n".join([str(a) for a in predExp])
     #print(strTemp)
 
-    with open(FNameOutput, 'w') as fpPred:
+    with open('./results/'+FNameOutput, 'w') as fpPred:
         fpPred.write(strTemp)
 
