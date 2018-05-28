@@ -1,18 +1,13 @@
 import sqlite3
 import pandas as pd
 import numpy as np
+from utils.meth_utils import short_2_full, full_2_short
 
 # Create your connection.
 cnx = sqlite3.connect('ES_meth_calls.sqlite')
 new = pd.read_sql_query("SELECT * FROM ES_new_calls", cnx)
 old = pd.read_sql_query("SELECT * FROM ES_old_calls", cnx)
 cnx.close()
-
-new2old = {'AD': 'ADCY8', 'DP': 'DPYS', 'GA': 'GARL1',
-           'GR': 'GRM6', 'H12': 'HOXD12', 'HD9': 'None', 'PR': 'PRAC',
-           'PT': 'PTGDR', 'SA': 'SALL3', 'SI': 'SIX6', 'SL': 'SLC6A2',
-           'TL': 'TLX3', 'TR': 'TRIM58', 'ZF': 'ZFP41'}
-old2new = {new2old[i]: i for i in new2old.keys() if new2old[i] is not None}
 
 # list labels that are trustworthy for each of three things
 # --> is methylated
@@ -30,7 +25,7 @@ old2new = {new2old[i]: i for i in new2old.keys() if new2old[i] is not None}
 # same/diff = Homogeneous_or_Heterogeneous_or_Unclear?_(O/E/?)
 # gene = Gene_Name
 
-old['Gene_Name'] = [old2new[i] for i in old.gene]
+old['Gene_Name'] = [full_2_short(i) for i in old.gene]
 old.index = [a.Gene_Name + '_' + a._9 for a in old.itertuples()]
 new.index = [a.Gene_Name + '_' + a.ID_info for a in new.itertuples()]
 
@@ -68,29 +63,45 @@ def convert_hh(x):
 shared['homo_or_hetero'] = shared['homo_or_hetero'].apply(convert_hh)
 shared['samediff'] = shared['samediff'].apply(convert_hh)
 
-print(shared['samediff'])
+# print(shared['samediff'])
 homohetero = shared[shared['homo_or_hetero'] == shared['samediff']]
-print(homohetero['homo_or_hetero'])
-print(np.shape(homohetero))
+# print(homohetero['homo_or_hetero'])
+# print(np.shape(homohetero))
 
-'''
+from glob import glob
+import os
 
-##### convert all the calls to uppercase
-#print(shared['yes/no'])
-yesno,meth = [],[]
-for row in shared.itertuples():
-    if row.yesno == 'Y': yesno.append('Y')
-    if row.yesno == 'N': yesno.append('N')
-    
+filenames = glob('results/*.svm')
+for path in filenames:
+    fname = os.path.split(path)[1]
+    toks = fname.split('_')
 
-shared['Methylated_YN'] = meth
-shared[shared['Methylated_(Y/N)']=='m']['Methylated_(Y/N)'] = 'N'
-shared['yes/no'] = [str(i).upper() for i in shared['yes/no'] if len(str(i)) > 0]
-shared['Methylated_(Y/N)'] = [str(i).upper() for i in shared['Methylated_(Y/N)'] if len(str(i)) > 0]
+    gene_name = full_2_short(toks[0])
 
+    if ('cell' in fname.lower()) and ('lines' in fname.lower()):
+        continue
+    elif 'PLATE' in fname:
+        sample_group = toks[1] + toks[2]
+    elif 'Sample_Group' in fname:
+        sample_group = toks[3]
+    else:
+        sample_group = toks[3]
 
+    f = open(path)
+    for count, line in enumerate(f):
+        nrow = new[(new['Gene_Name'] == gene_name) & (new['Sample_Group'] == sample_group) & (
+                    new['Sample_Number'] == np.ceil((count + 1) / 2))]
+        nrow = nrow[['Gene_Name', 'Sample_Group', 'Sample_Number', 'Level_of_Methylation']].values
 
+        if len(nrow) == 0:
+            continue
+        elif nrow[0][3] is None:
+            continue
+        elif 'estimative' in nrow[0][3].lower():
+            continue
 
-print(np.unique(shared['yes/no']))
-print(np.unique(shared['Methylated_(Y/N)']))
-'''
+        print(gene_name, sample_group, nrow[0][2],nrow[0][3], line.strip(),sep=',')
+
+        #orow = old[(old['gene'].upper() == short_2_full(gene_name)) & (old['Cohort'].split()[-1] == sample_group) & (
+        #            new['Sample_Number'] == np.ceil((count + 1) / 2))]
+        #nrow = nrow[['Gene_Name', 'Sample_Group', 'Sample_Number', 'Level_of_Methylation']].values
