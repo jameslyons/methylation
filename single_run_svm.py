@@ -5,7 +5,8 @@ import re
 import numpy as np
 from scipy.optimize import minimize
 
-fileName = '/home/rhys/work/ForEl/RUN_FILES_V5_Combined/ADCY8_Sample_Group_4b_58oC_150617.rex'
+#fileName = '/home/rhys/work/forElgit/RexFiles/HOXD12_Sample_Group_4b_61oC_140617.rex'
+fileName='/home/rhys/work/forElgit/RexFiles/DPYS_PLATE_8_60oC_120517.rex'
 
 def feat(control, controlLabel, exp):
     listzpc = []
@@ -45,15 +46,68 @@ except:
     print("error reading", fileName)
     raise
 
-print(controlLabel)
+featControl=feat(control, controlLabel, control[2:])
+featExp    =feat(control, controlLabel, exp)
 
-controlFeat=feat(control, controlLabel, control[2:])
-expFeat    =feat(control, controlLabel, exp)
+labelControl = label(controlLabel[2:])
 
-controlLabel = label(controlLabel[2:])
-print(controlLabel)
+for C in [0.001,0.01,0.1,0.2,0.5,0.8,1,2,5]:
+    for ESPILON in [0.001,0.01,0.1,0.2,0.5,0.8,1,2,5]:
 
-mod = SVR()
-mod.fit(np.matrix(controlFeat).T,np.array(controlLabel))
-pred = mod.predict(np.matrix(expFeat).T)
-print(pred)
+        mod = SVR(kernel='rbf', C=C, epsilon=ESPILON)
+        mod.fit(np.matrix(featControl).T, np.array(labelControl))
+        pred = mod.predict(np.matrix(featExp).T)
+        #print(C, ESPILON, pred)
+
+
+
+gridERR =[]
+gridC = []
+gridEPSILON = []
+
+listC = list(np.linspace(0.1, 15, 20))
+listEPSILON = list(np.linspace(0, 15,20))
+
+for C in listC:
+    for EPSILON in listEPSILON:
+        #print(C,EPSILON)
+        gridC.append(C)
+        gridEPSILON.append(EPSILON)
+
+        accCV = []
+        # leave one out CV
+        for i in range(len(featControl)):
+            labelTrain = [a for j,a in enumerate(labelControl) if j!=i]
+            labelTest = labelControl[i]/100
+            featTrain = [a for j,a in enumerate(featControl) if j!=i]
+            featTest = featControl[i]/100
+
+            modCV = SVR(kernel='rbf', C=C, epsilon=EPSILON)
+            #print(featTrain, labelTrain)
+            modCV.fit(np.matrix(featTrain).T,np.array(labelTrain))
+            #print(featTest)
+            predCV = modCV.predict(np.matrix(featTest).T)
+
+            accCV.append((labelTest-predCV)**2)
+
+        gridERR.append(np.mean(accCV))
+
+'''
+plt.figure()
+plt.scatter(gridC, gridEPSILON, c=gridERR)
+plt.xlabel('C')
+plt.ylabel('Epsilon')
+plt.colorbar()
+plt.show()
+'''
+
+minERRIdx = np.argmin(gridERR)
+minC = gridC[minERRIdx]
+minEPSILON = gridEPSILON[minERRIdx]
+
+mod = SVR(kernel='rbf', C=minC, epsilon=minEPSILON)
+mod.fit(np.matrix(featControl).T, np.array(labelControl))
+predExp = mod.predict(np.matrix(featExp).T)
+
+print(predExp)
+

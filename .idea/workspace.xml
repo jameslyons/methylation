@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ddc7910-016a-4309-ab84-f10ede4f9b63" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/meth_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/methylation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/methylation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ES_meth_calls.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/ES_meth_calls.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/look_at_sqlite_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/look_at_sqlite_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readMethylationInput.py" beforeDir="false" afterPath="$PROJECT_DIR$/readMethylationInput.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readRunFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/readRunFile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/single_run_svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/single_run_svm.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,7 +31,7 @@
       <file leaf-file-name="look_at_sqlite_db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/look_at_sqlite_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
+            <state relative-caret-position="90">
               <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="14" selection-end-column="75" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
@@ -59,7 +52,7 @@
       <file leaf-file-name="fill_REXFileList_table.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fill_REXFileList_table.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="585">
               <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
@@ -71,7 +64,7 @@
       <file leaf-file-name="readMethylationInput.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readMethylationInput.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="285">
               <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -83,7 +76,7 @@
       <file leaf-file-name="readRunFile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readRunFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1203">
+            <state relative-caret-position="135">
               <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding>
                 <element signature="e#159#196#0" expanded="true" />
@@ -95,8 +88,8 @@
       <file leaf-file-name="single_run_svm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/single_run_svm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="49" column="52" lean-forward="true" selection-start-line="49" selection-start-column="52" selection-end-line="49" selection-end-column="52" />
+            <state relative-caret-position="445">
+              <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -140,17 +133,16 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="5">
-    <option name="y" value="27" />
-    <option name="width" value="960" />
-    <option name="height" value="1015" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="28" />
+    <option name="width" value="950" />
+    <option name="height" value="1008" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,17 +153,13 @@
             <path>
               <item name="methylation" type="b2602c69:ProjectViewProjectNode" />
               <item name="methylation" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="methylation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="methylation" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -236,20 +224,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="960" height="1015" extended-state="4" />
+    <frame x="0" y="27" width="1920" height="1019" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.50104165" side_tool="true" visible="true" weight="0.33004385" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.5015625" side_tool="true" visible="true" weight="0.3264192" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49839228" weight="0.32973805" />
-      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49895832" visible="true" weight="0.33004385" />
+      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4984375" visible="true" weight="0.3264192" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7839286" weight="0.23336968" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36979166" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1828125" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -258,7 +246,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" x="0" y="0" width="430" height="816" id="Documentation" side_tool="true" weight="0.47291666" />
+      <window_info anchor="right" x="0" y="0" width="430" height="816" id="Documentation" order="3" side_tool="true" weight="0.47291666" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
@@ -275,6 +263,63 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/look_at_sqlite_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="14" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/meth_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fill_REXFileList_table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readMethylationInput.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readRunFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding>
+            <element signature="e#159#196#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single_run_svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="49" column="52" lean-forward="true" selection-start-line="49" selection-start-column="52" selection-end-line="49" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/look_at_sqlite_db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -299,19 +344,13 @@
         <state relative-caret-position="-647" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/fill_REXFileList_table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/fill_REXFileList_table.py" />
     <entry file="file://$PROJECT_DIR$/utils/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/look_at_sqlite_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
+        <state relative-caret-position="90">
           <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="14" selection-end-column="75" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -328,7 +367,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fill_REXFileList_table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
+        <state relative-caret-position="585">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
@@ -338,7 +377,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/readRunFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1203">
+        <state relative-caret-position="135">
           <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding>
             <element signature="e#159#196#0" expanded="true" />
@@ -348,7 +387,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/readMethylationInput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="285">
           <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="13" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -358,8 +397,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/single_run_svm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="49" column="52" lean-forward="true" selection-start-line="49" selection-start-column="52" selection-end-line="49" selection-end-column="52" />
+        <state relative-caret-position="445">
+          <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
