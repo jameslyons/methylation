@@ -5,7 +5,7 @@ NEW2OLD = {'AD': 'ADCY8', 'DP': 'DPYS', 'GA': 'GARL1', 'HA9': 'HOXA9',
 OLD2NEW = {NEW2OLD[i]: i for i in NEW2OLD.keys() if NEW2OLD[i] is not None}
 
 def short_2_full(short):
-    return NEW2OLD[short]
+    return NEW2OLD[short.strip().upper()]
 
 def full_2_short(full):
-    return OLD2NEW[full]
+    return OLD2NEW[full.strip().upper()]
