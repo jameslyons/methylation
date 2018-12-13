@@ -1,6 +1,5 @@
 from readRunFile import loadRex
 from sklearn.svm import SVR
-import matplotlib.pyplot as plt
 import re
 import numpy as np
 from scipy.optimize import minimize
@@ -107,7 +106,7 @@ for REXName in listREXNames:
 
                 accCV.append((labelTest-predCV)**2)
 
-            gridERR.append(np.mean(accCV))
+            gridERR.append(np.sum(accCV))
 
     '''
     plt.figure()
